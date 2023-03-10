@@ -1,0 +1,58 @@
+rke2:
+  $type: namespace
+
+  rke2_version:
+    $name: 'RKE2 version'
+    $type: text
+    $default: 'v1.24.10+rke2r1'
+  
+  token:
+    $name: 'Cluster token'
+    $type: text
+
+  cni:
+    $name: 'cni'
+    $type: select
+    $values: ["canal", "calico", "cilium"]
+ 
+  connect_server:
+    $name: 'Server registration'
+    $type: boolean 
+
+  address:
+    $visible: this.parent.value.connect_server == true 
+
+  tls_san:
+    $type: edit-group
+    $minItems: 1
+    $itemName: tls_san ${i}
+    $optional: False
+    $prototype:
+      $type: text
+      $name: 'tls san'
+
+  proxy:
+    $type: group
+    $name: Use proxy
+    
+    enabled:
+      $type: boolean
+      $default: False
+      $help: Check to enable proxy configuration
+ 
+    proxy_http:
+      $type: text
+      $name: http proxy url
+      $visible: this.parent.value.enabled == true
+
+    proxy_https:
+      $type: text
+      $name: https proxy url
+      $visible: this.parent.value.enabled == true
+
+
+    no_proxy:
+      $type: text
+      $name: No proxy setup
+      $visible: this.parent.value.enabled == true
+
