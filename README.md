@@ -1,5 +1,5 @@
 # rke2-formula-suma
-Formula to install a rke2 cluster with SUSE Manager.
+Formula to install rke2 server with SUSE Manager.
 This will install rke2-server on the targeted server. It can be installed either in standalone mode or registered to another server in the case of a Highly available installation. 
 
 ## Prerequisites
